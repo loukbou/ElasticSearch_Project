@@ -1,0 +1,22 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /usr/share/filebeat/logs/firefox_build.log
+      - /usr/share/filebeat/logs/log-2018-06-10/*.txt
+    scan_frequency: 5s
+    tail_files: true
+    fields:
+      source: firefox_build
+    fields_under_root: true
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+logging:
+  level: info
+  to_files: true
+  files:
+    path: /usr/share/filebeat/logs
+    name: filebeat
+    keepfiles: 7
