@@ -50,10 +50,9 @@ services:
     user: root
     restart: always
     volumes:
-      # dossier contenant les logs Firefox
       - ./logs:/usr/share/filebeat/logs
-      # fichier de configuration filebeat.yml
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      
     depends_on:
       - Logstash
     networks:
